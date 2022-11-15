@@ -3,8 +3,12 @@ name: Kind
 # Any change in triggers needs to be reflected in the concurrency group.
 on:
   pull_request: {}
-  schedule:
-    - cron:  '30 */6 * * *'
+  push:
+    branches:
+      - master
+      - ft/master/**
+
+permissions: read-all
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || 'scheduled' }}
@@ -20,7 +24,7 @@ env:
 
 jobs:
   installation-and-connectivity:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     timeout-minutes: 40
     steps:
       - name: Checkout
