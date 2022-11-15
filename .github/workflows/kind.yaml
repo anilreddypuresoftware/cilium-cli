@@ -24,7 +24,7 @@ env:
 
 jobs:
   installation-and-connectivity:
-    runs-on: self-hosted
+    runs-on: self-hosted 
     timeout-minutes: 40
     steps:
       - name: Checkout
